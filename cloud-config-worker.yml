@@ -1,0 +1,29 @@
+#cloud-config
+
+apt_update: true
+apt_upgrade: true
+
+packages:
+  - apt-transport-https 
+  - ca-certificates 
+  - curl
+
+users:
+  - name: appuser
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    home: /home/appuser
+    shell: /bin/bash
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC7tQuE4B8ZDXp0YLxKVpvjrftv21fHQ1B8lF3Jh2EhO9GSJOZsQedgE3ttiHps6QptdMpsHpPLr63h29OZrDajMFmUvSSbznR7hYPm3mtaUJyRbxWIdHewwOoExF9QB0zHYZMw9kHnzhwo5qw8mpc7+GTMO8inAmu920bHmsMJlXB5ZK+5W/fTJIqqCEhJdan0Msnt9ddhhbILhzmI1Q+OmIwSAM2HDiBPLjuxtAZdvc7Y4zj+Hqp/aJuEvd74d5aybOxSBIz+lgsOIFdjPTc3as1H591vt9UR8lDy1hq98I9biZUJmkSY1My/h48fZwjJmbfpNCODCTO9HC4tNICIkgQRak172nmMAoKrUJqPcWcGoWJuglmH6er1ldmspO97fJ426ndQON/nDSp9LxLGkAH2VT7WbHSQHb9YZgIrIRfxW2IaHwf33hZ5Q9p4FEW0gYZRWMK/WW7a+QVMEPui3SZBODGJfw9pOJe3jLMlPPkriJyGXt/a82oRxfcwL7E= ubuntu@rd-prj
+
+# Replace these variables with actual values
+k3s_server_url: https://192.168.2.250:6443
+k3s_token: K101040bbc3b34f1a9dc745ef468b494e7fd5b56fd9c7d6eb977f3d603f864b7a4f::server:7e6bc5fea213102babe1523fc5ecc92a
+
+runcmd:
+  # - curl -sfL https://get.k3s.io | K3S_URL=https://192.168.2.33:6443 K3S_TOKEN=K109ae992fcd724fbd8b7b7454a8be89c155ec1ec2cc4e5e176607ec75aac3226b1::server:9a876ddbcf25f57774de56a168381c6a sh -
+  - curl -sfL https://get.k3s.io | K3S_URL=https://<IP>:6443 K3S_TOKEN=<k3s_token> sh -
+
+byobu_default: system
+
+final_message: "The system is finally up, after $UPTIME seconds"
