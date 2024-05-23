@@ -1,0 +1,4 @@
+fastest time: 0m2.097s
+User Model used: 0m12.983s
+CPU model used: 0m0.345s
+Number of Thread: 200

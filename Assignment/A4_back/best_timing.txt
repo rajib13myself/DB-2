@@ -1,0 +1,2 @@
+fastest time: 0m0.091s
+CPU model used: 0m0.000s
